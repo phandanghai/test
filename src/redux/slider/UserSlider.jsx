@@ -4,7 +4,6 @@ const initiaState = {
   users: [],
   loading: false,
   success: false,
-  page: 1,
 };
 
 const usersSlice = createSlice({
@@ -24,13 +23,9 @@ const usersSlice = createSlice({
       state.loading = false;
       state.success = false;
     },
-    getPages: (state, action) => {
-      state.page = action.payload;
-    },
   },
 });
 
-export const { getUserStart, getUserSuccess, getUserFailure, getPages } =
-  usersSlice.actions;
+export const { getUserStart, getUserSuccess, getUserFailure } = usersSlice.actions;
 
 export default usersSlice.reducer;

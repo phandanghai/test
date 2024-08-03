@@ -1,15 +1,14 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getPages } from '../../redux/slider/UserSlider';
+import { getPages } from '../../redux/slider/stateSlider';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function Pagination({ handleClick }) {
+export default function Pagination() {
   const dispatch = useDispatch();
-  const page = useSelector((state) => state.user.page);
+  const page = useSelector((state) => state.state.page);
   return (
-    <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+    <div className="flex items-center justify-between bg-white px-4 py-3">
+      <div className="flex flex-1 items-center justify-between">
         <div>
           <nav
             aria-label="Pagination"
@@ -21,7 +20,6 @@ export default function Pagination({ handleClick }) {
                 to={`/?page=${i}&results=10`}
                 onClick={() => {
                   dispatch(getPages(i));
-                  handleClick();
                 }}
                 style={
                   page === i
@@ -31,7 +29,7 @@ export default function Pagination({ handleClick }) {
                       }
                     : {}
                 }
-                className={`relative bg-white border-1 border-[#ccc] hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:z-20 md:inline-flex`}
+                className={`relative bg-white border-1 border-[#ccc] items-center px-2 py-1 sm:px-4 sm:py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:z-20 inline-flex `}
               >
                 {i}
               </Link>
